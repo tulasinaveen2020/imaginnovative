@@ -40,7 +40,7 @@ public class EmployeeCurrentFYTotalSalaryCalcUtil {
          */
 
         if(Integer.compare(yearOfDOJ , currentFinYear) == 0 &&
-                Integer.compare(dojMonthValue, currentFinYearStartMonthValue) > 0){
+                Integer.compare(dojMonthValue, currentFinYearStartMonthValue) >= 0){
 
             int mSalary = (int) monthlySalary;
 
