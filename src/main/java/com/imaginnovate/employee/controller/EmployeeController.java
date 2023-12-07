@@ -51,7 +51,7 @@ public class EmployeeController {
         return new ResponseEntity<EmployeeDTO>(employeeService.updateById(empId, employeeDTO), HttpStatus.ACCEPTED);
     }
 
-    @DeleteMapping("/delete/{empId")
+    @DeleteMapping("/delete/{empId}")
     public ResponseEntity<String> deleteEmployee(Long empId){
         log.info(LoggerConstants.LOG_DELETE_START_MSG);
         String message = employeeService.deleteById(empId);

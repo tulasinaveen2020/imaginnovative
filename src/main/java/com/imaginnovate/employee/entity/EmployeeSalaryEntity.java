@@ -15,6 +15,6 @@ public class EmployeeSalaryEntity {
     @JsonIgnore
     private int id;
 
-    private Long salary;
+    private long salary;
 
 }

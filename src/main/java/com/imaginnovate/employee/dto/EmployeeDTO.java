@@ -33,8 +33,8 @@ public class EmployeeDTO {
     @Email
     private String emailId;
 
-   @NotEmpty(message = MessageConstants.EMAIL_REQ_MSG)
-   @Pattern(regexp=MessageConstants.PHONE_PATTERN,  message = MessageConstants.PHONE_REQ_LEN_MSG)
+   @NotEmpty(message = MessageConstants.PHONE_REQ_LEN_MSG)
+   // @Pattern(regexp=MessageConstants.PHONE_PATTERN,  message = MessageConstants.PHONE_REQ_LEN_MSG)
    private String phoneNumber;
 
     @JsonDeserialize(using = CustomJsonDateDeserializer.class)

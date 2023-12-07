@@ -1,6 +1,7 @@
 package com.imaginnovate.employee.service.impl;
 
 import com.imaginnovate.employee.constant.ExceptionConstants;
+import com.imaginnovate.employee.constant.MessageConstants;
 import com.imaginnovate.employee.dto.EmployeeDTO;
 import com.imaginnovate.employee.entity.EmployeeEntity;
 import com.imaginnovate.employee.entity.EmployeeSalaryEntity;
@@ -9,9 +10,14 @@ import com.imaginnovate.employee.mapper.EmpMapper;
 import com.imaginnovate.employee.repository.EmpRepository;
 import com.imaginnovate.employee.repository.EmpSalaryRepository;
 import com.imaginnovate.employee.service.IEmployeeService;
+import com.imaginnovate.employee.util.CessAmtComputationUtil;
+import com.imaginnovate.employee.util.EmployeeCurrentFYTotalSalaryCalcUtil;
+import com.imaginnovate.employee.util.TaxAmtComputationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -30,6 +36,8 @@ public class EmployeeServiceImpl implements IEmployeeService {
     @Override
     public EmployeeEntity save(EmployeeDTO employeeDTO) {
         EmployeeEntity employeeEntity = empMapper.dtoToEntity(employeeDTO);
+        employeeEntity.setCreatedBy(MessageConstants.ADMIN);
+        employeeEntity.setCreatedDateTime(new Timestamp(System.currentTimeMillis()));
         return empRepository.save(employeeEntity);
 
     }
@@ -43,7 +51,8 @@ public class EmployeeServiceImpl implements IEmployeeService {
         for(EmployeeEntity empEntity : empEntityList){
             empDTOList.add(empMapper.entityToDto(empEntity));
         }
-        return empDTOList;
+
+               return empDTOList;
     }
 
     @Override
@@ -58,6 +67,8 @@ public class EmployeeServiceImpl implements IEmployeeService {
         EmployeeEntity updatedEmpEntity = null;
         if(empEntity.isPresent()){
             employeeDTO.setId(empEntity.get().getId());
+            employeeDTO.setUpdatedBy(MessageConstants.ADMIN);
+            employeeDTO.setUpdatedDateTime(new Timestamp(System.currentTimeMillis()));
             updatedEmpEntity = empRepository.save(empMapper.dtoToEntity(employeeDTO));
         }
         else throw new EmployeeNotFoundException();

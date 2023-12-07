@@ -35,6 +35,7 @@ public class EmployeeDTOEntityMapper implements EmpMapper{
         if(null==empEntity) return null;
 
         EmployeeDTO employeeDTO = new EmployeeDTO();
+        employeeDTO.setId(empEntity.getId());
         employeeDTO.setFirstName(empEntity.getFirstName());
         employeeDTO.setLastName(empEntity.getLastName());
         employeeDTO.setPhoneNumber(empEntity.getPhoneNumber());

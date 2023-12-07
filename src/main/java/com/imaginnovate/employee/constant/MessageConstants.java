@@ -14,4 +14,5 @@ public  class MessageConstants {
     public static final String PHONE_REQ_LEN_MSG = " Please enter valid phone number should contain 10 digits";
     public static final String DOJ_VALIDATION_MSG = " Please enter valid past or present date of joining in the format yyyy-MM-dd";
 
+    public static final String ADMIN = "ADMIN";
 }
